@@ -1,5 +1,5 @@
 #!/bin/python
-pin = 4
+pin = 19
 # importeer de GPIO bibliotheek.
 import RPi.GPIO as GPIO
 # Importeer de time biblotheek voor tijdfuncties.
@@ -8,6 +8,7 @@ from time import sleep
 # Zet de pinmode op Broadcom SOC.
 GPIO.setmode(GPIO.BCM)
 # Zet waarschuwingen uit.
+
 GPIO.setwarnings(False)
 
 # Zet de GPIO pin als uitgang.

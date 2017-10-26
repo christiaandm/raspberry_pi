@@ -7,10 +7,11 @@ def send_ping(status):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     # get local machine name
-    host = socket.gethostname()
+    # host = socket.gethostname()
 
-    port = 9991
-
+    host = "192.168.42.1"
+    port = 9999
+    s.settimeout(2)
     # connection to hostname on the port.
     s.connect((host, port))
 

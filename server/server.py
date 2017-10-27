@@ -2,7 +2,6 @@
 import socket
 import time
 import threading
-from subprocess import check_output
 import datetime
 import os
 
@@ -22,14 +21,13 @@ serversocket.bind((host, port))
 serversocket.listen(5)
 connected_clients = dict()
 next_command = ""
-received_message = ""
+received_status = ""
 
 def background_check():
     """thread background_check function"""
     while True:
-        # ips = check_output(['hostname', '--all-ip-addresses'])
-        # print(ips)
         for ip in dict(connected_clients):
+            # als een connectie 5 seconden niet meer gezien is
             current_time_check = round(time.time())-5
             if (current_time_check > connected_clients[ip]["last_time"]):
                 last_seen = datetime.datetime.fromtimestamp(
@@ -60,7 +58,7 @@ def cli():
         elif choice == 2:
             next_command = "set_status:on"
         elif choice == 3:
-            print("alarm status: " + received_message)
+            print("alarm status: " + received_status)
             input("Druk op enter om verder te gaan")
 
 
@@ -79,7 +77,7 @@ try:
 
         connected_clients[ip]['last_time'] = current_time
         # print("Got a connection from %s" % str(addr))
-        received_message = clientsocket.recv(1024).decode('ascii')
+        received_status = clientsocket.recv(1024).decode('ascii')
         # print("recieved_message: {}".format(recieved_message))
         string = str(current_time) + ' \n'
         if next_command != "":

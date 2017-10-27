@@ -34,10 +34,6 @@ GPIO.setup(status_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 def set_status(new_status):
     "standby,triggerd,on,off"
     global status
-
-    print("@@@@@@@@@status" + new_status+ " oud" + status)
-
-    old_status = status
     status = new_status
 
     if status == "standby":
@@ -48,7 +44,7 @@ def set_status(new_status):
         GPIO.output(led_green, 0)
         GPIO.output(led_yellow, 1)
         GPIO.output(led_red, 0)
-    elif status == "on" and old_status != status:
+    elif status == "on":
         pass
         # GPIO.output(led_green, 0)
         # GPIO.output(led_yellow, 0)

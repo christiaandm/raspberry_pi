@@ -3,11 +3,9 @@ import socket
 
 
 def send_ping(status):
+    "functie die telkens de status van het systeem doorgeeft"
     # create a socket object
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-    # get local machine name
-    # host = socket.gethostname()
 
     host = "192.168.42.1"
     port = 9999
